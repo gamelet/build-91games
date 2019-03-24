@@ -1,5 +1,19 @@
+language: node_js
+node_js:
+  - lts/*
+
 services:
   - docker
   
 before_install:
-  - sudo docker version
+  - git config --global core.autocrlf false && git config --global core.filemode false
+  - echo -e ${REPO_ACCESS_SSHKEY} > ~/.ssh/ci
+  - chmod 400 ~/.ssh/ci
+  - GIT_SSH_COMMAND="ssh -i ~/.ssh/ci -o StrictHostKeyChecking=no" git clone git@bitbucket.org:goodass/gamelet.git
+
+script:
+  - cd gamelet
+  - docker login --username=${ALIYUN_DOCKER_USER} --password=${ALIYUN_DOCKER_PASSWORD} registry.cn-hangzhou.aliyuncs.com
+  - docker build -t registry.cn-hangzhou.aliyuncs.com:91games/91games-server-ci -f dockers/sharp/Dockerfile .
+  - docker push registry.cn-hangzhou.aliyuncs.com:91games/91games-server-ci
+  
