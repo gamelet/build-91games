@@ -18,7 +18,6 @@ script:
   - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-server-ci
 #  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-singleserver-ci -f dockers/single/Dockerfile .
 #  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-singleserver-ci
-  - docker build --build-arg VARIANT=aotrelease --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci -f dockers/sharp/Dockerfile .
+#  - docker build --build-arg VARIANT=aotrelease --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci -f dockers/sharp/Dockerfile .
+  - docker build --build-arg VARIANT=aotrelease --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci -f dockers/sharp-ubuntu/Dockerfile .
   - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci
-#  - docker build --build-arg VARIANT=aotrelease --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci -f dockers/sharp-ubuntu/Dockerfile .
-#  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci
