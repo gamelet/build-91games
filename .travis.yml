@@ -16,8 +16,10 @@ script:
   - docker login --username=${ALIYUN_DOCKER_USER} --password=${ALIYUN_DOCKER_PASSWORD} registry.cn-hangzhou.aliyuncs.com
   - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-ci -f dockers/sharp/Dockerfile .
   - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-server-ci
+  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server3-ci -f dockers/sharp/Dockerfile3 .
+  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-server3-ci
 #  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-singleserver-ci -f dockers/single/Dockerfile .
 #  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-singleserver-ci
 #  - docker build --build-arg VARIANT=aotrelease --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci -f dockers/sharp/Dockerfile .
-  - docker build --build-arg VARIANT=aotrelease --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci -f dockers/sharp-ubuntu/Dockerfile .
-  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci
+#  - docker build --build-arg VARIANT=aotrelease --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci -f dockers/sharp-ubuntu/Dockerfile .
+#  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-server-aot-ci
