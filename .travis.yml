@@ -5,13 +5,15 @@ node_js:
 dist: bionic
 
 before_install:
-  - wget -O dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/a0e368ac-7161-4bde-a139-1a3ef5a82bbe/439cdbb58950916d3718771c5d986c35/dotnet-sdk-3.0.100-preview8-013656-linux-x64.tar.gz
-  - mkdir dotnet; tar -zxvf dotnet.tar.gz -C dotnet
+  - mkdir dotnet
+  - export PATH=$(pwd)/dotnet:${PATH}
   - wget http://gosspublic.alicdn.com/ossutil/1.6.6/ossutil64                           
   - chmod 755 ./ossutil64; mv ./ossutil64 ./dotnet/
-  - echo -e ${ALIYUN_OSS_CONFIG} > ~/.ossutilconfig
-  - cat ~/.ossutilconfig
-  - export PATH=$(pwd)/dotnet:${PATH}
+  - ossutil64 config -e oss-cn-hangzhou.aliyuncs.com -i ${ALIYUN_ACCESS_ID} -k ${ALIYUN_ACCESS_SECRET}  -L CH
+#  - echo -e ${ALIYUN_OSS_CONFIG} > ~/.ossutilconfig
+#  - cat ~/.ossutilconfig
+  - wget -O dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/a0e368ac-7161-4bde-a139-1a3ef5a82bbe/439cdbb58950916d3718771c5d986c35/dotnet-sdk-3.0.100-preview8-013656-linux-x64.tar.gz
+  - tar -zxvf dotnet.tar.gz -C dotnet
   - git config --global core.autocrlf false && git config --global core.filemode false
   - echo -e ${REPO_ACCESS_SSHKEY} > ~/.ssh/ci
   - chmod 400 ~/.ssh/ci
