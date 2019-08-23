@@ -1,7 +1,9 @@
-language: csharp
-mono: none
-#dotnet: 3.0.100-preview8
- 
+language: node_js
+node_js:
+  - lts/*
+
+dist: bionic
+
 before_install:
   - wget -O dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/a0e368ac-7161-4bde-a139-1a3ef5a82bbe/439cdbb58950916d3718771c5d986c35/dotnet-sdk-3.0.100-preview8-013656-linux-x64.tar.gz
   - mkdir dotnet; tar -zxvf dotnet.tar.gz -C dotnet
@@ -13,4 +15,6 @@ before_install:
 script:
   - export PATH=$(pwd)/dotnet:${PATH}
   - cd gamelet/91games3.net
+  - dotnet publish -c Release -r linux-x64 --self-contained true -o out
+  - cd gamelet/91games3.cli
   - dotnet publish -c Release -r linux-x64 --self-contained true -o out
