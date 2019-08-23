@@ -23,8 +23,10 @@ script:
 #  - export PATH=$(pwd)/dotnet:${PATH}
   - cd gamelet/91games3.net; dotnet publish -c Release -r linux-x64 --self-contained true -o out; tar -zcvf app.tar.gz out/ > /dev/null 2>&1
   - cd gamelet/91games3.cli; dotnet publish -c Release -r linux-x64 --self-contained true -o out; tar -zcvf cli.tar.gz out/ > /dev/null 2>&1
-  - ossutil cp gamelet/91games3.net/app.tar.gz oss://gamelets
-  - ossutil cp gamelet/91games3.cli/cli.tar.gz oss://gamelets
+  - ls -l gamelet/91games3.net
+  - ls -l gamelet/91games3.cli
+  - cd gamelet/91games3.net; ossutil cp app.tar.gz oss://gamelets/
+  - cd gamelet/91games3.cli; ossutil cp cli.tar.gz oss://gamelets/
 
 #addons:
 #  artifacts:
