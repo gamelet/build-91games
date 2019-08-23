@@ -10,8 +10,6 @@ before_install:
   - wget http://gosspublic.alicdn.com/ossutil/1.6.6/ossutil64                           
   - chmod 755 ./ossutil64; mv ./ossutil64 ./dotnet/ossutil
   - ossutil config -e oss-cn-hangzhou.aliyuncs.com -i ${ALIYUN_ACCESS_ID} -k ${ALIYUN_ACCESS_SECRET}  -L CH
-#  - echo -e ${ALIYUN_OSS_CONFIG} > ~/.ossutilconfig
-#  - cat ~/.ossutilconfig
   - wget -q -O dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/a0e368ac-7161-4bde-a139-1a3ef5a82bbe/439cdbb58950916d3718771c5d986c35/dotnet-sdk-3.0.100-preview8-013656-linux-x64.tar.gz
   - tar -zxvf dotnet.tar.gz -C dotnet > /dev/null 2>&1
   - git config --global core.autocrlf false && git config --global core.filemode false
@@ -20,16 +18,7 @@ before_install:
   - GIT_SSH_COMMAND="ssh -i ~/.ssh/ci -o StrictHostKeyChecking=no" git clone git@bitbucket.org:goodass/gamelet.git
 
 script:
-#  - export PATH=$(pwd)/dotnet:${PATH}
   - cd gamelet/91games3.net; dotnet publish -c Release -r linux-x64 --self-contained true -o out; tar -zcvf app.tar.gz out/ > /dev/null 2>&1
   - cd gamelet/91games3.cli; dotnet publish -c Release -r linux-x64 --self-contained true -o out; tar -zcvf cli.tar.gz out/ > /dev/null 2>&1
-  - ls -l gamelet/91games3.net
-  - ls -l gamelet/91games3.cli
-  - cd gamelet/91games3.net; ossutil cp app.tar.gz oss://gamelets/
-  - cd gamelet/91games3.cli; ossutil cp cli.tar.gz oss://gamelets/
-
-#addons:
-#  artifacts:
-#    paths:
-#      - gamelet/91games3.net/app.tar.gz
-#      - gamelet/91games3.cli/cli.tar.gz
+  - cd gamelet/91games3.net; ossutil cp app.tar.gz oss://gamelets/91games/
+  - cd gamelet/91games3.cli; ossutil cp cli.tar.gz oss://gamelets/91games/
