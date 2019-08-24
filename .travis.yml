@@ -20,5 +20,5 @@ before_install:
 script:
   - cd gamelet/91games3.net; dotnet publish -c Release -r linux-x64 --self-contained true -o out; tar -zcvf app.tar.gz out/ > /dev/null 2>&1
   - cd gamelet/91games3.cli; dotnet publish -c Release -r linux-x64 --self-contained true -o out; tar -zcvf cli.tar.gz out/ > /dev/null 2>&1
-  - cd gamelet/91games3.net; ossutil cp app.tar.gz oss://gamelets/91games/
-  - cd gamelet/91games3.cli; ossutil cp cli.tar.gz oss://gamelets/91games/
+  - cd gamelet/91games3.net; ossutil cp -f app.tar.gz oss://gamelets/91games/
+  - cd gamelet/91games3.cli; ossutil cp -f cli.tar.gz oss://gamelets/91games/
