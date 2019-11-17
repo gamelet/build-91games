@@ -16,5 +16,5 @@ script:
   - docker login --username=${ALIYUN_DOCKER_USER} --password=${ALIYUN_DOCKER_PASSWORD} registry.cn-hangzhou.aliyuncs.com
   - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci -f dockers/allinone/Dockerfile .
   - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci
-  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-single-ci -f dockers/single/Dockerfile.ubuntu .
-  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-single-ci
+#  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-single-ci -f dockers/single/Dockerfile.ubuntu .
+#  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-single-ci
