@@ -17,5 +17,5 @@ script:
   - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci -f dockers/allinone/Dockerfile .
   - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci
   
-  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci --build-arg VARIANT=Release -f dockers/allinone/Dockerfile .
+  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci --build-arg VARIANT=AotRelease -f dockers/allinone/Dockerfile .
 
