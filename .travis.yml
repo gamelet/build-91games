@@ -4,17 +4,17 @@ node_js:
 
 services:
   - docker
-  
+
+notifications:
+  email: false
+
 before_install:
   - git config --global core.autocrlf false && git config --global core.filemode false
   - echo -e ${REPO_ACCESS_SSHKEY} > ~/.ssh/ci
   - chmod 400 ~/.ssh/ci
   - GIT_SSH_COMMAND="ssh -i ~/.ssh/ci -o StrictHostKeyChecking=no" git clone git@github.com:gamelet/gamelet.git
-
 script:
   - cd gamelet
-#  - docker login --username=${ALIYUN_DOCKER_USER} --password=${ALIYUN_DOCKER_PASSWORD} registry.cn-hangzhou.aliyuncs.com
-  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci -f dockers/allinone/Dockerfile.ubuntu .
-#  - docker push registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci
-
-#  - docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/91games/91games-allinone-ci -f dockers/allinone/Dockerfile.aot .
+  - docker build --no-cache -t worstass/91games-ci -f dockers/allinone/Dockerfile.ubuntu .
+#  - docker login --username=${DOCKER_USER} --password=${DOCKER_PASSWORD}
+#  - docker push worstass/91games-ci
